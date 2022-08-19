@@ -2,7 +2,7 @@
 <Configuration status="WARN" name="App">
 
     <CustomLevels>
-        <CustomLevel name="POLICE" intLevel="350" />
+        <CustomLevel name=" " intLevel="340" />
     </CustomLevels>
 
     <Appenders>
