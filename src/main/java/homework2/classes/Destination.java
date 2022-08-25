@@ -10,13 +10,16 @@ public class Destination implements ITracing {
     private String city;
     private String adress;
 
+    private double km;
+
     public Destination() {
     }
 
-    public Destination(String country, String city, String adress) {
+    public Destination(String country, String city, String adress, double km) {
         this.country = country;
         this.city = city;
         this.adress = adress;
+        this.km=km;
     }
 
     public void setAdress(String adress) {
@@ -31,6 +34,10 @@ public class Destination implements ITracing {
         this.country = country;
     }
 
+    public void setKm(double km) {
+        this.km = km;
+    }
+
     public String getAdress() {
         return adress;
     }
@@ -41,6 +48,10 @@ public class Destination implements ITracing {
 
     public String getCountry() {
         return country;
+    };
+
+    public double getKm() {
+        return km;
     }
 
     public String destinationDetails() {

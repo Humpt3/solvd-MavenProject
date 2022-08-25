@@ -12,10 +12,8 @@ public class Delivery {
 
     private Origin origin;
     private Destination destination;
-    private double km;
     private Client client;
 
-    private Transport transport;
     private String stateDelivery;
 
 
@@ -23,15 +21,14 @@ public class Delivery {
 
     }
 
-    public Delivery(double km, Client client, Origin origin, Destination destination) {
-        this.km = km;
+    public Delivery(Client client, Origin origin, Destination destination) {
         this.client = client;
         this.origin = origin;
         this.destination = destination;
 
 
         try {
-            Delivery.kmValidation(km);
+            Delivery.kmValidation(destination);
         } catch (KmLimitException e) {
             logger.info(e.getMessage());
         }
@@ -39,19 +36,11 @@ public class Delivery {
     }
 
 
-    public void setKm(double km) {
-        this.km = km;
-    }
-
 
     public void setStateDelivery(String stateDelivery) {
         this.stateDelivery = stateDelivery;
     }
 
-
-    public double getKm() {
-        return km;
-    }
 
     public String getStateDelivery() {
         return stateDelivery;
@@ -65,9 +54,7 @@ public class Delivery {
         return client;
     }
 
-    public Transport getTransport() {
-        return transport;
-    }
+
 
     public Destination getDestination() {
         return destination;
@@ -106,8 +93,11 @@ public class Delivery {
             }
 
 
+    public double calculateKm(){
+        return destination.getKm();
+    }
 
-    public void createTransport() {
+   /* public void createTransport() {
         if (this.getKm() < 1000) {
             Car car1 = new Car(1984, "GD3SDQ");
            this.setStateDelivery("shipped");
@@ -134,6 +124,8 @@ public class Delivery {
     }
 
 
+    */
+
 
 
 
@@ -143,12 +135,12 @@ public class Delivery {
 
     // method for exception
 
-    public static void kmValidation(double km) throws KmLimitException {
+    public static void kmValidation(Destination destination) throws KmLimitException {
       /*  if (delivery.getKm() > 10000) {
             throw new CustomException("allowed kilometers exceeded");
         }*/
 
-        if (km < 1) {
+        if (destination.getKm() < 1) {
             throw new KmLimitException();
         }
     }

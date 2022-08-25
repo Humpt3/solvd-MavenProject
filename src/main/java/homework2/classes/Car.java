@@ -1,6 +1,7 @@
 package homework2.classes;
 
 import homework2.interfaces.IExtraCharge;
+import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,8 +10,8 @@ public class Car extends Transport implements IExtraCharge {
     private static Logger logger = LogManager.getLogger(Car.class);
 
 
-    public Car(int model, String license) {
-        super(model, license);
+    public Car(int model, String license, Delivery delivery, boolean isAvaliable) {
+        super(model, license, delivery, isAvaliable);
 
     }
 
@@ -35,7 +36,20 @@ public class Car extends Transport implements IExtraCharge {
                     */
     @Override
     public void printData() {
+        if(delivery.calculateKm() < 1000){
+            double fcost = delivery.finalCost() + this.addExtraCharge();
+            this.messageExtraCharge();
+            logger.info("Final cost its: " + fcost);
+        }
+
         logger.info("Delivery will be sent by a car, model: " + this.getModel() + " " + "license: " + this.getLicense());
+    }
+
+    @Override
+    public void transportsAvaliables(LinkedList<Transport> transports) {
+        if(isAvaliable()== true){
+            transports.add(this);
+        }
     }
 }
 
