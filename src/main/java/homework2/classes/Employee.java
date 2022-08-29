@@ -3,22 +3,22 @@ package homework2.classes;
 import homework2.linkedlist.LinkedList;
 
 public class Employee {
-    private int License;
+    private int license;
     private String name;
     private boolean isAvaliable;
 
     public Employee(int license, String name, boolean isAvaliable) {
-        License = license;
+        this.license = license;
         this.name = name;
         this.isAvaliable = isAvaliable;
     }
 
     public int getLicense() {
-        return License;
+        return license;
     }
 
     public void setLicense(int license) {
-        License = license;
+        license = license;
     }
 
     public String getName() {
@@ -37,11 +37,9 @@ public class Employee {
         isAvaliable = avaliable;
     }
 
-    public void addAvaliableDriver(LinkedList linkedList){
-        if(this.isAvaliable() == true){
-            linkedList.add(this);
-        }
-    }
 
+    public String employeeDetails(){
+        return "Name: " + getName() + " " + "Driver License: " + getLicense();
+    }
 
 }

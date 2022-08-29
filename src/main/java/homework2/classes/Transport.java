@@ -7,15 +7,14 @@ public abstract class Transport {
     private String license;
 
     private boolean isAvaliable;
-    protected Delivery delivery;
 
 
 
 
-    public Transport(int model, String license, Delivery delivery, boolean isAvaliable) {
+
+    public Transport(int model, String license,boolean isAvaliable) {
         this.model = model;
         this.license = license;
-        this.delivery = delivery;
         this.isAvaliable = isAvaliable;
 
     }
@@ -46,11 +45,9 @@ public abstract class Transport {
         return model;
     }
 
-    public Delivery getDelivery() {
-        return delivery;
-    }
 
-    public abstract void printData();
+
+    public abstract void printData(Delivery delivery);
 
     public abstract void transportsAvaliables(LinkedList<Transport> transports);
 }

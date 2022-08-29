@@ -4,15 +4,28 @@ import homework2.linkedlist.LinkedList;
 
 public class Company {
     private String name;
-    private String Adress;
-    private LinkedList<Employee> employees;
-    private LinkedList<Transport> transports;
+    private String adress;
 
-    public Company(String name, String adress, LinkedList<Employee> employees, LinkedList<Transport> transports) {
+    private LinkedList<Employee> avaliableEmployees;
+    private LinkedList<Transport> avaliableTransports;
+
+    private Delivery delivery;
+
+    public Company(String name, String adress, LinkedList<Employee> avaliableEmployees, LinkedList<Transport> avaliableTransports, Delivery delivery) {
         this.name = name;
-        Adress = adress;
-        this.employees = employees;
-        this.transports = transports;
+        this.adress = adress;
+        this.avaliableEmployees=avaliableEmployees;
+        this.avaliableTransports = avaliableTransports;
+        this.delivery=delivery;
+    }
+
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
     }
 
     public String getName() {
@@ -24,26 +37,37 @@ public class Company {
     }
 
     public String getAdress() {
-        return Adress;
+        return adress;
     }
 
     public void setAdress(String adress) {
-        Adress = adress;
+        this.adress = adress;
     }
 
-    public LinkedList<Employee> getEmployees() {
-        return employees;
+    public LinkedList<Employee> getAvaliableEmployees() {
+        return avaliableEmployees;
     }
 
     public void setEmployees(LinkedList<Employee> employees) {
-        this.employees = employees;
+        this.avaliableEmployees = employees;
     }
 
-    public LinkedList<Transport> getTransports() {
-        return transports;
+    public LinkedList<Transport> getAvaliableTransports() {
+        return avaliableTransports;
     }
 
     public void setTransports(LinkedList<Transport> transports) {
-        this.transports = transports;
+        this.avaliableTransports = transports;
+    }
+
+    public void printDetails(){
+        getAvaliableTransports().print();
+        getAvaliableEmployees().print();
+
+        delivery.deliveryDetails();
+
+
+
+
     }
 }

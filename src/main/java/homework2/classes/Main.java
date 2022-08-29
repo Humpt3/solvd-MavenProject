@@ -15,94 +15,63 @@ public class Main {
     public static void main(String[] args) {
 
 
+        // EMPLOYEES
+        Employee ricardo = new Employee(344141, "Ricardo Monzón", true);
+        Employee mauro = new Employee(133124, "Mauro Benavidez", false);
+        Employee hugo = new Employee(656464, "Hugo Sosa", true);
 
-        //products
+        LinkedList<Employee> avaliableEmployees = new LinkedList<Employee>();
+
+        // TRANSPORTS
+
+        Transport car1 = new Car(213,"CA2313", true);
+        Transport ship1 = new Ship(551, "SH3313", true);
+        Transport truck1 = new Truck(131, "TR331", false);
+
+        LinkedList<Transport> avaliableTransports = new LinkedList<Transport>();
 
 
         Product iphone = new Product("Iphone", 20, 30, 40, 50);
-        Product macbook = new Product("Macbook", 20, 30, 40, 120);
-        Product samsung = new Product("Galaxy S7", 30, 12, 12, 80);
-        Product nokia = new Product("Nokia 1.3", 15, 15, 15, 60);
-        Product hp = new Product("G7 250g", 50, 40, 30, 130);
-
-        LinkedList phones = new LinkedList();
-        LinkedList computers = new LinkedList();
-
-        phones.add(iphone);
-        phones.add(samsung);
-        phones.add(nokia);
-        phones.print();
-        int countPhones = phones.getCount();
-        logger.info("List Size: "+countPhones);
-
-        computers.add(macbook);
-        computers.add(hp);
-        computers.print();
-        int countComputers = computers.getCount();
-        logger.info("List Size: "+countComputers);
-
-
-        //Clients
         Client jose = new Client("Jose", "Los cocos 5231", "4446894", false,iphone);
-        Client juan = new Client("Juan", "Los cocos 5321", "4462394", true, macbook);
-        Client lucas = new Client("Lucas", "Fake street 123", "44434111", false, samsung);
-        Client ibm = new Client("IBM", "1 Orchard Rd Armonk (HQ), NY", "+00013131554", true, hp);
+        Origin argentina = new Origin(34000000, "Buenos Aires");
+        Destination china = new Destination("China", "Shangai", "someStreet222", 5000);
 
-        //Origins
-        Origin argentina = new Origin(332, 543123, "Argentina");
-        Origin argentina1 = new Origin(32, 5431233, "Argentina");
-        Origin argentina2 = new Origin(132, 4413213, "Argentina");
+        Delivery delivery1 = new Delivery(jose,argentina, china);
 
-        //Destinations
-        Destination japan = new Destination("Japan", "Tokyo", "tokyostreet 222");
-        Destination china = new Destination("China", "Shangai", "chinastreet 222");
-        Destination russia = new Destination("Russia", "Saint petersburg", "The place where Rodion lives");
-
-        LinkedList destinations = new LinkedList();
-        destinations.add(japan);
-        destinations.add(china);
-        destinations.add(russia);
-        destinations.print();
-
-        int countDestinations = destinations.getCount();
-        logger.info("List Size: "+countDestinations);
+        delivery1.addAvaliableDriver(avaliableEmployees,ricardo);
+        delivery1.addAvaliableDriver(avaliableEmployees, mauro);
+        delivery1.addAvaliableDriver(avaliableEmployees, hugo);
 
 
-        Delivery delivery1 = new Delivery(200, jose, argentina, japan);
-        Delivery delivery2 = new Delivery(1200, juan, argentina1, china);
-        Delivery delivery3 = new Delivery(3500, ibm, argentina2, russia);
+
+        delivery1.addAvaliableTransport(avaliableTransports, car1);
+        delivery1.addAvaliableTransport(avaliableTransports, truck1);
+        delivery1.addAvaliableTransport(avaliableTransports, ship1);
+
+        Company company = new Company("Rappi", "Calle falsa 123", avaliableEmployees, avaliableTransports, delivery1);
 
 
-        delivery1.finalMethod();
-        try {
+ try {
             Product.sizeValidation(iphone);
-            delivery1.finalCost();
+            company.printDetails();
+            car1.printData(delivery1);
+            ship1.printData(delivery1);
+            truck1.printData(delivery1);
         } catch (SizeLimitException e) {
             logger.info(e.getMessage());
         }
-
-        delivery1.createTransport();
-
         delivery1.setStateDelivery("Shipped");
 
-        delivery2.finalMethod();
-        try {
-            Product.sizeValidation(macbook);
-            delivery2.finalCost();
-        } catch (SizeLimitException e) {
-            logger.info(e.getMessage());
-        }
-        delivery2.createTransport();
 
-        delivery2.setStateDelivery("Delivered");
+       // delivery2.setStateDelivery("Delivered");
 
         argentina.tracking(delivery1);
-        argentina1.tracking(delivery2);
 
 
-        logger.info(juan.equals(jose));
-        logger.info(juan.hashCode());
-        logger.info(jose.hashCode());
+
+        logger.info(ricardo.equals(mauro));
+        logger.info(mauro.hashCode());
+        logger.info(hugo.hashCode());
 
 
     }

@@ -9,8 +9,8 @@ public class Truck extends Transport implements IExtraCharge {
     private static Logger logger = LogManager.getLogger(Truck.class);
 
 
-    public Truck(int model, String license, Delivery delivery, boolean isAvaliable) {
-        super(model, license, delivery, isAvaliable);
+    public Truck(int model, String license, boolean isAvaliable) {
+        super(model, license, isAvaliable);
 
     }
 
@@ -35,13 +35,14 @@ public class Truck extends Transport implements IExtraCharge {
                     }
                 */
     @Override
-    public void printData() {
-        if(delivery.calculateKm() > 1000 && delivery.calculateKm()< 3000){
+    public void printData(Delivery delivery) {
+        if(delivery.calculateKm() > 1000 && delivery.calculateKm()< 3000 && this.isAvaliable() == true){
             double fcost = delivery.finalCost() + this.addExtraCharge();
             this.messageExtraCharge();
             logger.info("Final cost its: " + fcost);
+            logger.info("Delivery will be sent by a Truck, model: " + this.getModel() + " " + "license: " + this.getLicense());
         }
-        logger.info("Delivery will be sent by a Truck, model: " + this.getModel() + " " + "license: " + this.getLicense());
+
 
     }
 

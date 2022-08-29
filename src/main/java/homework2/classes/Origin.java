@@ -16,7 +16,7 @@ public class Origin implements ITracing {
     public Origin() {
     }
 
-    public Origin(int branchNumber, int phoneNumber, String location) {
+    public Origin(int phoneNumber, String location) {
         this.phoneNumber = phoneNumber;
         this.location = location;
     }

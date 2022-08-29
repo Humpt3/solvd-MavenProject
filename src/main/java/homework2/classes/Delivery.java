@@ -2,10 +2,9 @@ package homework2.classes;
 
 
 import homework2.exceptions.KmLimitException;
+import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.LinkedList;
 
 public class Delivery {
     private static Logger logger = LogManager.getLogger(Delivery.class);
@@ -15,6 +14,8 @@ public class Delivery {
     private Client client;
 
     private String stateDelivery;
+
+
 
 
     public Delivery() {
@@ -64,24 +65,24 @@ public class Delivery {
 
 
 
-    public final void finalMethod() {
+    public final void deliveryDetails(){
                     logger.info("******DETAILS OF THE DELIVERY******");
-            logger.info(this.getClient().clientDetails());
-            logger.info(this.getOrigin().originDetails() + " " + this.getDestination().destinationDetails());
+            logger.info(client.clientDetails());
+            logger.info(origin.originDetails() + " " + destination.destinationDetails());
 
         }
 
 
     public double finalCost() {
 
-                double cost = this.getClient().getProduct().getWeight() * this.getClient().getProduct().sizeOfProduct();
+                double cost = client.getProduct().getWeight() * client.getProduct().sizeOfProduct();
 
-                if (this.getClient().getIsComercial() == true && this.getClient().getProduct().getWeight() > 1000) {
+                if (client.getIsComercial() == true && client.getProduct().getWeight() > 1000) {
                     cost = cost - cost * 0.2;
                     logger.info("The total cost its: $" + cost + " " + "It has a discount of %20");
                     return cost;
 
-                } else if (this.getClient().getIsComercial() == false && this.getClient().getProduct().getWeight() > 1000) {
+                } else if (client.getIsComercial() == false && client.getProduct().getWeight() > 1000) {
                     cost = cost - cost * 0.1;
                     logger.info("The total cost its: $" + cost + " " + "It has a discount of %10");
                     return cost;
@@ -96,6 +97,38 @@ public class Delivery {
     public double calculateKm(){
         return destination.getKm();
     }
+
+
+
+
+    // method for exception
+
+    public static void kmValidation(Destination destination) throws KmLimitException {
+        /*if (destination.getKm() > 10000) {
+            throw new CustomException("allowed kilometers exceeded");
+        }*/
+
+        if (destination.getKm() < 1) {
+            throw new KmLimitException();
+        }
+    }
+
+    public void addAvaliableDriver(LinkedList linkedList, Employee employee){
+        if(employee.isAvaliable() == true){
+            linkedList.add(this);
+        }
+    }
+
+    public void addAvaliableTransport(LinkedList linkedList, Transport transport){
+        if(transport.isAvaliable() == true){
+            linkedList.add(this);
+        }
+    }
+
+}
+
+
+
 
    /* public void createTransport() {
         if (this.getKm() < 1000) {
@@ -126,26 +159,6 @@ public class Delivery {
 
     */
 
-
-
-
-
-
-
-
-    // method for exception
-
-    public static void kmValidation(Destination destination) throws KmLimitException {
-      /*  if (delivery.getKm() > 10000) {
-            throw new CustomException("allowed kilometers exceeded");
-        }*/
-
-        if (destination.getKm() < 1) {
-            throw new KmLimitException();
-        }
-    }
-
-}
 
 
 
