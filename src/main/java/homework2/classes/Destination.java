@@ -1,12 +1,13 @@
 package homework2.classes;
 
+import homework2.enums.AllowedDestinations;
 import homework2.interfaces.ITracing;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Destination implements ITracing {
     private static Logger logger = LogManager.getLogger(Destination.class);
-    private String country;
+    private AllowedDestinations country;
     private String city;
     private String adress;
 
@@ -15,7 +16,7 @@ public class Destination implements ITracing {
     public Destination() {
     }
 
-    public Destination(String country, String city, String adress, double km) {
+    public Destination(AllowedDestinations country, String city, String adress, double km) {
         this.country = country;
         this.city = city;
         this.adress = adress;
@@ -30,7 +31,7 @@ public class Destination implements ITracing {
         this.city = city;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(AllowedDestinations country) {
         this.country = country;
     }
 
@@ -46,7 +47,7 @@ public class Destination implements ITracing {
         return city;
     }
 
-    public String getCountry() {
+    public AllowedDestinations getCountry() {
         return country;
     };
 

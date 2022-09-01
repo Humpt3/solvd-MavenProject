@@ -1,5 +1,6 @@
 package homework2.classes;
 
+import homework2.enums.TypeOfLicenses;
 import homework2.interfaces.IExtraCharge;
 import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
@@ -9,8 +10,8 @@ public class Truck extends Transport implements IExtraCharge {
     private static Logger logger = LogManager.getLogger(Truck.class);
 
 
-    public Truck(int model, String license, boolean isAvaliable) {
-        super(model, license, isAvaliable);
+    public Truck(int model, boolean isAvaliable) {
+        super(model,isAvaliable);
 
     }
 
@@ -35,12 +36,14 @@ public class Truck extends Transport implements IExtraCharge {
                     }
                 */
     @Override
-    public void printData(Delivery delivery) {
-        if(delivery.calculateKm() > 1000 && delivery.calculateKm()< 3000 && this.isAvaliable() == true){
+    public void printData(Delivery delivery, Employee employee) {
+        if(delivery.calculateKm() > 1000 && delivery.calculateKm()< 3000 && this.isAvaliable() == true && (employee.getLicense() == TypeOfLicenses.C1)){
             double fcost = delivery.finalCost() + this.addExtraCharge();
             this.messageExtraCharge();
             logger.info("Final cost its: " + fcost);
-            logger.info("Delivery will be sent by a Truck, model: " + this.getModel() + " " + "license: " + this.getLicense());
+            logger.info("Delivery will be sent by a Truck, model: " + this.getModel());
+            logger.info("The Drivers name is: "+employee.getName() + " " + "License: "+employee.getLicense());
+
         }
 
 

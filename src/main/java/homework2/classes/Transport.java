@@ -4,7 +4,6 @@ import homework2.linkedlist.LinkedList;
 
 public abstract class Transport {
     private int model;
-    private String license;
 
     private boolean isAvaliable;
 
@@ -12,9 +11,8 @@ public abstract class Transport {
 
 
 
-    public Transport(int model, String license,boolean isAvaliable) {
+    public Transport(int model, boolean isAvaliable) {
         this.model = model;
-        this.license = license;
         this.isAvaliable = isAvaliable;
 
     }
@@ -37,9 +35,7 @@ public abstract class Transport {
     }
 
 
-    public String getLicense() {
-        return license;
-    }
+
 
     public int getModel() {
         return model;
@@ -47,7 +43,7 @@ public abstract class Transport {
 
 
 
-    public abstract void printData(Delivery delivery);
+    public abstract void printData(Delivery delivery, Employee employee);
 
     public abstract void transportsAvaliables(LinkedList<Transport> transports);
 }

@@ -1,5 +1,7 @@
 package homework2.classes;
 
+import homework2.enums.AllowedDestinations;
+import homework2.enums.TypeOfLicenses;
 import homework2.exceptions.SizeLimitException;
 import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
@@ -16,25 +18,24 @@ public class Main {
 
 
         // EMPLOYEES
-        Employee ricardo = new Employee(344141, "Ricardo Monzón", true);
-        Employee mauro = new Employee(133124, "Mauro Benavidez", false);
-        Employee hugo = new Employee(656464, "Hugo Sosa", true);
+        Employee ricardo = new Employee(TypeOfLicenses.B1, "Ricardo Monzón", true);
+        Employee mauro = new Employee(TypeOfLicenses.C1, "Mauro Benavidez", false);
+        Employee hugo = new Employee(TypeOfLicenses.G4, "Hugo Sosa", true);
 
         LinkedList<Employee> avaliableEmployees = new LinkedList<Employee>();
 
         // TRANSPORTS
 
-        Transport car1 = new Car(213,"CA2313", true);
-        Transport ship1 = new Ship(551, "SH3313", true);
-        Transport truck1 = new Truck(131, "TR331", false);
+        Transport car1 = new Car(213,true);
+        Transport ship1 = new Ship(551, true);
+        Transport truck1 = new Truck(131,  false);
 
         LinkedList<Transport> avaliableTransports = new LinkedList<Transport>();
-
 
         Product iphone = new Product("Iphone", 20, 30, 40, 50);
         Client jose = new Client("Jose", "Los cocos 5231", "4446894", false,iphone);
         Origin argentina = new Origin(34000000, "Buenos Aires");
-        Destination china = new Destination("China", "Shangai", "someStreet222", 5000);
+        Destination china = new Destination(AllowedDestinations.FRANCE, "Shangai", "someStreet222", 5000);
 
         Delivery delivery1 = new Delivery(jose,argentina, china);
 
@@ -54,9 +55,9 @@ public class Main {
  try {
             Product.sizeValidation(iphone);
             company.printDetails();
-            car1.printData(delivery1);
-            ship1.printData(delivery1);
-            truck1.printData(delivery1);
+            car1.printData(delivery1, ricardo);
+            ship1.printData(delivery1, hugo);
+            truck1.printData(delivery1, mauro);
         } catch (SizeLimitException e) {
             logger.info(e.getMessage());
         }
