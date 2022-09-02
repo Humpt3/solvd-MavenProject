@@ -19,9 +19,9 @@ public class Main {
 
 
         // EMPLOYEES
-        Employee ricardo = new Employee(TypeOfLicenses.B1, "Ricardo Monzón", true);
-        Employee mauro = new Employee(TypeOfLicenses.C1, "Mauro Benavidez", false);
-        Employee hugo = new Employee(TypeOfLicenses.G4, "Hugo Sosa", true);
+        Employee ricardo = new Employee(TypeOfLicenses.B1,20, "Ricardo Monzón", true);
+        Employee mauro = new Employee(TypeOfLicenses.C1,5, "Mauro Benavidez", false);
+        Employee hugo = new Employee(TypeOfLicenses.G4,15, "Hugo Sosa", true);
 
         LinkedList<Employee> avaliableEmployees = new LinkedList<Employee>();
 

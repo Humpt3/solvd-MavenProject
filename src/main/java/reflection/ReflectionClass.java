@@ -15,7 +15,7 @@ public class ReflectionClass {
     private static Logger logger = LogManager.getLogger(ReflectionClass.class);
 
     public static void main(String[] args) throws Exception{
-        Employee hernesto = new Employee(TypeOfLicenses.B1, "Hernesto Abrahan", true);
+        Employee hernesto = new Employee(TypeOfLicenses.B1, 20, "Hernesto Abrahan", true);
 
         // GETTING THE FIELDS NAME OF THE CLASS
 

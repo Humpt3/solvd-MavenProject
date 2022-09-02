@@ -1,5 +1,6 @@
 package homework2.classes;
 
+import homework2.interfaces.IVacations;
 import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -144,6 +145,7 @@ public class Company {
         logger.info("List of licenses: "+listOfLicenses);
 
     }
+
 
 
 
