@@ -1,6 +1,7 @@
 package homework2.classes;
 
 import homework2.enums.AllowedDestinations;
+import homework2.enums.ProductCategory;
 import homework2.enums.TypeOfLicenses;
 import homework2.exceptions.SizeLimitException;
 import homework2.linkedlist.LinkedList;
@@ -32,12 +33,21 @@ public class Main {
 
         LinkedList<Transport> avaliableTransports = new LinkedList<Transport>();
 
-        Product iphone = new Product("Iphone", 20, 30, 40, 50);
+        Product iphone = new Product("Iphone", ProductCategory.ELECTRONIC, 20, 30, 40, 50);
         Client jose = new Client("Jose", "Los cocos 5231", "4446894", false,iphone);
-        Origin argentina = new Origin(34000000, "Buenos Aires");
-        Destination china = new Destination(AllowedDestinations.FRANCE, "Shangai", "someStreet222", 5000);
+        Origin argentina = new Origin("Buenos Aires");
+        Destination china = new Destination(AllowedDestinations.FRANCE, "París", "someStreet222", 5000);
 
         Delivery delivery1 = new Delivery(jose,argentina, china);
+
+        Company company = new Company("Rappi", "Calle falsa 123", avaliableEmployees, avaliableTransports, delivery1);
+        company.addEmployee(hugo);
+        company.addEmployee(mauro);
+        company.addEmployee(ricardo);
+
+        company.addTransport(car1);
+        company.addTransport(ship1);
+        company.addTransport(truck1);
 
         delivery1.addAvaliableDriver(avaliableEmployees,ricardo);
         delivery1.addAvaliableDriver(avaliableEmployees, mauro);
@@ -49,7 +59,13 @@ public class Main {
         delivery1.addAvaliableTransport(avaliableTransports, truck1);
         delivery1.addAvaliableTransport(avaliableTransports, ship1);
 
-        Company company = new Company("Rappi", "Calle falsa 123", avaliableEmployees, avaliableTransports, delivery1);
+
+        //streams
+        company.showTransports();
+        company.numberAvaliableTr();
+        company.employeeNamesToUpperCase();
+        company.nameMatchEmployee();
+        company.listLicenses();
 
 
  try {

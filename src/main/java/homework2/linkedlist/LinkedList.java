@@ -18,54 +18,71 @@ public class LinkedList<T> {
         private Node(T value) {
             this.value = value;
         }
-    }
 
-    public void add(T element) {
-        Node node = new Node(element);
-        if (this.head == null) {
-            this.head = node;
-        } else {
-            Node iterator = this.head;
-            while (iterator.next != null) {
-                iterator = iterator.next;
-            }
-            iterator.next = node;
+        public T getValue() {
+            return value;
         }
-    }
 
-    public void print() {
-        Node iterator = head;
-        while (iterator != null) {
-            logger.info(iterator.value + " ");
-            iterator = iterator.next;
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
         }
     }
 
-    public void delete(T element){
-        Node iterator=head;
-        int found=0;
-        // to check if first valor is value
-        if(iterator.value==element){
-            found=1;
-            head=head.next;
-        }
-        // to check other than first value
-        else{
-            Node iterator2=head;
-            while(iterator!=null){
-                if(iterator.value==element){
-                    found=1;
-                    break;
-                }
-                iterator2=iterator;
-                iterator=iterator.next;
+    public void insert(T data){
+        Node newNode = new Node(data);
+        if(this.head == null){
+            head = newNode;
+        }else {
+            Node currentNode = head;
+            while(currentNode.getNext() != null){
+                currentNode = currentNode.getNext();
             }
-            if(found==1){
-                iterator2.next=iterator.next;
-            }
+            currentNode.setNext(newNode);
         }
-        if(found==0){
-            logger.info("element not found in linked list");
+    }
+
+
+    public void insertHead(T data){
+        Node newNode = new Node(data);
+        newNode.setNext(head);
+        head = newNode;
+    }
+
+    public void insertAt(int index, T data){
+        Node nodeToBeInserted = new Node(data);
+        Node node = head;
+        for(int i = 0; i< index -1; i++){
+            node = node.getNext();
+        }
+        nodeToBeInserted.setNext(node.getNext());
+        node.setNext(nodeToBeInserted);
+    }
+
+
+    public void deleteNodeAt(int index){
+        Node node = head;
+        for(int i = 0; i< index -1; i++){
+            node = node.getNext();
+        }
+        node.setNext(node.getNext().getNext());
+    }
+
+    public void display(){
+        if(head != null){
+            Node currentNode = head;
+            while(currentNode.getNext() != null){
+                logger.info(currentNode.getValue());
+                currentNode = currentNode.getNext();
+            }
+            logger.info(currentNode.getNext());
         }
     }
 

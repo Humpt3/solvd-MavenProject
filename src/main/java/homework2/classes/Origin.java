@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Logger;
 public class Origin implements ITracing {
     private static Logger logger = LogManager.getLogger(Origin.class);
 
-
-    private int phoneNumber;
     private String location;
 
     public final static double km = 0;
@@ -16,8 +14,8 @@ public class Origin implements ITracing {
     public Origin() {
     }
 
-    public Origin(int phoneNumber, String location) {
-        this.phoneNumber = phoneNumber;
+    public Origin(String location) {
+
         this.location = location;
     }
 
@@ -25,13 +23,6 @@ public class Origin implements ITracing {
 
 
 
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
 
     public String getLocation() {
         return location;
@@ -42,7 +33,7 @@ public class Origin implements ITracing {
     }
 
     public String originDetails() {
-        return "Phone number: " + getPhoneNumber() + " " + "Location: " + getLocation();
+        return "Location: " + getLocation();
     }
 
     @Override

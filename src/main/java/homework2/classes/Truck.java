@@ -52,7 +52,7 @@ public class Truck extends Transport implements IExtraCharge {
     @Override
     public void transportsAvaliables(LinkedList<Transport> transports) {
         if(isAvaliable()== true){
-            transports.add(this);
+            transports.insert(this);
         }
     }
 }

@@ -7,6 +7,8 @@ import homework2.linkedlist.LinkedList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class Delivery {
     private static Logger logger = LogManager.getLogger(Delivery.class);
 
@@ -69,7 +71,8 @@ public class Delivery {
     public final void deliveryDetails(){
                     logger.info("******DETAILS OF THE DELIVERY******");
             logger.info(client.clientDetails());
-            logger.info(origin.originDetails() + " " + destination.destinationDetails());
+            logger.info(client.getProduct().productDetails());
+            logger.info("Origin: "+origin.originDetails() + " " + "Destination: " + destination.destinationDetails());
 
         }
 
@@ -116,50 +119,24 @@ public class Delivery {
 
     public void addAvaliableDriver(LinkedList linkedList, Employee employee){
         if(employee.isAvaliable() == true){
-            linkedList.add(this);
+            linkedList.insert(employee);
         }
     }
 
     public void addAvaliableTransport(LinkedList linkedList, Transport transport){
         if(transport.isAvaliable() == true){
-            linkedList.add(this);
+            linkedList.insert(transport);
         }
     }
+
+
+
+
+
 
 
 }
 
-
-
-
-   /* public void createTransport() {
-        if (this.getKm() < 1000) {
-            Car car1 = new Car(1984, "GD3SDQ");
-           this.setStateDelivery("shipped");
-            car1.printData();
-            double fcost = finalCost() + car1.addExtraCharge();
-            car1.messageExtraCharge();
-            logger.info("Final cost its: " + fcost);
-
-        } else if (this.getKm() > 1000 && this.getKm() < 3000) {
-            Truck truck1 = new Truck(1988, "HE3GG3");
-            this.setStateDelivery("shipped");
-            truck1.printData();
-            double fcost = finalCost() + truck1.addExtraCharge();
-            truck1.messageExtraCharge();
-            logger.info("Final cost its: " + fcost);
-        } else {
-            Ship ship1 = new Ship(2001, "EEE33B5");
-            this.setStateDelivery("shipped");
-            ship1.printData();
-            double fcost = finalCost() + ship1.addExtraCharge();
-            ship1.messageExtraCharge();
-            logger.info("Final cost its: " + fcost);
-        }
-    }
-
-
-    */
 
 
 

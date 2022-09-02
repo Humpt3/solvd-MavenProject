@@ -1,5 +1,6 @@
 package homework2.classes;
 
+import homework2.enums.ProductCategory;
 import homework2.exceptions.NameProductException;
 import homework2.exceptions.SizeLimitException;
 import homework2.exceptions.WeightLimitsException;
@@ -7,6 +8,8 @@ import homework2.exceptions.WeightLimitsException;
 public class Product {
 
     private String nameProduct;
+
+    private ProductCategory category;
     private double width;
     private double length;
     private double height;
@@ -16,8 +19,9 @@ public class Product {
 
     }
 
-    public Product(String nameProduct, double width, double length, double height, double weight) {
+    public Product(String nameProduct, ProductCategory category, double width, double length, double height, double weight) {
         this.nameProduct = nameProduct;
+        this.category = category;
         this.width = width;
         this.length = length;
         this.height = height;
@@ -41,6 +45,10 @@ public class Product {
     //setters
     public void setNameProduct(String nameProduct) {
         this.nameProduct = nameProduct;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
 
     public void setHeight(double height) {
@@ -77,6 +85,10 @@ public class Product {
         return nameProduct;
     }
 
+    public ProductCategory getCategory() {
+        return category;
+    }
+
     public double getWeight() {
         return weight;
     }
@@ -108,5 +120,11 @@ public class Product {
         if (weight > 20000000) {
             throw new WeightLimitsException();
         }
+    }
+
+    public String productDetails(){
+        return "Product: " +getNameProduct() +  " " +
+                "Category: " + " " + getCategory()+ " " +
+                "Weight: " + " " +getWeight();
     }
 }
