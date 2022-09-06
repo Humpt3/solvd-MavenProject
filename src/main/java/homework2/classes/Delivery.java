@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class Delivery {
+public class Delivery{
     private static Logger logger = LogManager.getLogger(Delivery.class);
 
     private Origin origin;
@@ -129,6 +129,13 @@ public class Delivery {
         }
     }
 
+    public double arrivalDate(Destination destination, IArrivalDate arrivalDate){
+        return arrivalDate.dateOfArrival(destination);
+    }
+
+    public double lambdaArrivalDate(Destination destination){
+        return this.arrivalDate(destination, (d -> (d.getKm() * 0.2 + 10)));
+    }
 
 
 

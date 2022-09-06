@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.function.Consumer;
 
 
 public class Main {
@@ -31,8 +32,6 @@ public class Main {
         Transport ship1 = new Ship(551, true);
         Transport truck1 = new Truck(131,  false);
 
-        LinkedList<Transport> avaliableTransports = new LinkedList<Transport>();
-
         Product iphone = new Product("Iphone", ProductCategory.ELECTRONIC, 20, 30, 40, 50);
         Client jose = new Client("Jose", "Los cocos 5231", "4446894", false,iphone);
         Origin argentina = new Origin("Buenos Aires");
@@ -40,7 +39,10 @@ public class Main {
 
         Delivery delivery1 = new Delivery(jose,argentina, china);
 
+        LinkedList<Transport> avaliableTransports = new LinkedList<Transport>();
+
         Company company = new Company("Rappi", "Calle falsa 123", avaliableEmployees, avaliableTransports, delivery1);
+
         company.addEmployee(hugo);
         company.addEmployee(mauro);
         company.addEmployee(ricardo);
@@ -83,6 +85,12 @@ public class Main {
        // delivery2.setStateDelivery("Delivered");
 
         argentina.tracking(delivery1);
+
+        // LAMBDAS
+
+        logger.info("The amount of days avaliable for the employee: "+ ricardo.getName() + " " + "are :"+company.vacationsLambda(ricardo));
+        logger.info("the approximate arrival date is in:  "+delivery1.lambdaArrivalDate(china)+" "+ "days");
+
 
 
 

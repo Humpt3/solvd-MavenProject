@@ -17,7 +17,7 @@ public class ClientsRunner {
             String currentThreadName = currentThread.getName();
 
             try {
-                Thread.sleep(250);
+                Thread.sleep(1000);
                 while (!CONNECTION_POOL.hasFreeConnections()) {
                     logger.info(currentThreadName + "in queue");
                     Thread.sleep(FREE_POOL_TIMEOUT);
@@ -45,6 +45,12 @@ public class ClientsRunner {
         ArrayList<Thread> threads = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             threads.add(new Thread(r, "thread " + i));
+            try {
+                threads.get(i).sleep(2000);
+
+            } catch (InterruptedException e) {
+                logger.info(e.getMessage());
+            }
             threads.get(i).start();
         }
     }
